@@ -1,9 +1,11 @@
 import { LatestNews } from "@/app/components/LatestNews/LatestNews";
+import { Spinner } from "../components/Spinner/Spinner";
 
 
 export default function IndexPage() {
   return (
     <div>
+      {/* <Spinner /> */}
       <LatestNews />
     </div>
   )

@@ -21,17 +21,17 @@ import { StaticImageData } from 'next/image';
 
 
 
-type NavItem = {
-    src: StaticImageData;
-    alt: string;
-    category: ArticleCategory;
-  };
+// type NavItem = {
+//     src: StaticImageData;
+//     alt: string;
+//     category: ArticleCategory;
+//   };
   
 
 
 
 
-export const CATEGORIES_ITEMS: Record<ArticleCategory, NavItem> =  {
+export const CATEGORIES_ITEMS: { [key in ArticleCategory]: CategoryItem } =  {
     business: { src: businessPng, alt: "Business logo", category: "business" },
     crime: { src: crimePng, alt: "Crime logo", category: "crime" },
     domestic: { src: domesticPng, alt: "Domestic logo", category: "domestic" },
@@ -50,9 +50,15 @@ export const CATEGORIES_ITEMS: Record<ArticleCategory, NavItem> =  {
     world: { src: worldPng, alt: "World logo", category: "world" },
 };
 
-export const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS = [
     CATEGORIES_ITEMS.business,
     CATEGORIES_ITEMS.environment,
     CATEGORIES_ITEMS.technology,
     CATEGORIES_ITEMS.world,
 ]
+
+interface CategoryItem {
+    src: StaticImageData;
+    alt: string;
+    category: ArticleCategory;
+  }
