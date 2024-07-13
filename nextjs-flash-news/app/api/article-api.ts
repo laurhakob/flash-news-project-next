@@ -1,14 +1,15 @@
+import { delayResponse } from "../lib/mock";
 import { Article, ArticleCategory, ArticleListResponse } from "../types/article-type";
 
 const DEFAULT_PARAMS = "language=en&country=us"
 
 export class ArticleApi {
   static async fetchToday(): Promise<Article[]> {
-    return (
+    return delayResponse((
       (await (
         await fetch(`${process.env.API_BASE_URL}`)
       ).json()) as ArticleListResponse
-    ).results;
+    ).results, 2000);
   }
 
   static async fetchByCategory(category: ArticleCategory): Promise<Article[]> {

@@ -1,16 +1,13 @@
-"use client"
+"use client";
 
 import { Article } from "@/app/types/article-type";
 import Image from "next/image";
 import Link from "next/link";
-import { CATEGORIES_ITEMS } from "../Nav/constant";
+import { CATEGORIES_ITEMS } from "../../constant";
 import defaultNewsPng from "@/public/default-news.png";
 import { ImageWithFallback } from "../imageWithFallback/imageWithFallback";
 
-
 export function ArticleCard(p: { article: Article }) {
-    
-
   return (
     <Link
       href={`/articles/title/${p.article.title}`}
@@ -43,13 +40,12 @@ export function ArticleCard(p: { article: Article }) {
         </div>
         {/* Article image*/}
         <ImageWithFallback
-          className="h-40 rounded-lg"
+          className=" rounded-lg"
           height={200}
           width={300}
           src={p.article.image_url || defaultNewsPng}
           alt="Image for article"
           fallback={defaultNewsPng}
-          
         />
       </div>
     </Link>

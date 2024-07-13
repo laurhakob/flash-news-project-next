@@ -1,21 +1,29 @@
-import { LatestNews } from "@/app/components/LatestNews/LatestNews";
+import {
+  LatestNews,
+  LatestNewsSkel,
+} from "@/app/components/LatestNews/LatestNews";
 import { Spinner } from "../components/Spinner/Spinner";
-
+import {
+  CryptoNews,
+  CryptoNewsSkel,
+} from "../components/CryptoNews/CryptoNews.server";
+import { Suspense } from "react";
+import Skeleton from "react-loading-skeleton";
 
 export default function IndexPage() {
   return (
-    <div>
+    <div className="flex justify-between">
       {/* <Spinner /> */}
-      <LatestNews />
+      <Suspense fallback={<LatestNewsSkel />}>
+        <LatestNews />
+      </Suspense>
+
+      <Suspense fallback={<CryptoNewsSkel />}>
+        <CryptoNews />
+      </Suspense>
     </div>
-  )
+  );
 }
-
-
-
-
-
-
 
 // export const dynamic = "force-dynamic"
 // export const revalidate = 10
@@ -28,7 +36,7 @@ export default function IndexPage() {
 //   const fetch2 = await (
 //     await fetch("https://api.chucknorris.io/jokes/random", {})
 //   ).json();
- 
+
 //   return (
 //     <div>
 //       {new Date().toLocaleTimeString()}

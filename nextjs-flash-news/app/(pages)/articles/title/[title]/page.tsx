@@ -1,8 +1,8 @@
 import { ArticleApi } from "@/app/api/article-api";
 import { ImageWithFallback } from "@/app/components/imageWithFallback/imageWithFallback";
-import { CATEGORIES_ITEMS } from "@/app/components/Nav/constant";
+import { CATEGORIES_ITEMS } from "@/app/constant";
 import Image from "next/image";
-import defaultNewsPng from "@/public/default-news.png"
+import defaultNewsPng from "@/public/default-news.png";
 import Link from "next/link";
 
 export default async function ArticleDetailPage(p: {
@@ -46,21 +46,23 @@ export default async function ArticleDetailPage(p: {
       <p className="text-justify ">{article.content}</p>
     </div>
   );
-  const footer = <div className="justify-between">
-    <div>
+  const footer = (
+    <div className="justify-between">
+      <div>
         Written by <span className="font-semibold">{article.creator}</span>
+      </div>
+      <Link className="text-blue-500 underline" href={article.link}>
+        Source
+      </Link>
     </div>
-    <Link className="text-blue-500 underline" href={article.link}>
-    Source
-    </Link>
-  </div>;
+  );
 
   return (
     <div className="flex flex-col items-center">
-        <div className="space-y-6 -w-6xl prose">
-            {header}
-            {body}
-            {footer}
+      <div className="space-y-6 -w-6xl prose">
+        {header}
+        {body}
+        {footer}
       </div>
     </div>
   );

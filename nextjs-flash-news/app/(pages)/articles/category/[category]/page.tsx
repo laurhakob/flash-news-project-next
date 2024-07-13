@@ -1,6 +1,6 @@
 import { ArticleApi } from "@/app/api/article-api";
 import { ArticleList } from "@/app/components/ArticleList/ArticleList";
-import { CATEGORIES_ITEMS, NAV_ITEMS } from "@/app/components/Nav/constant";
+import { CATEGORIES_ITEMS, NAV_ITEMS } from "@/app/constant";
 // import { NavItem } from "@/app/components/Nav/NavItem";
 import { Article, ArticleCategory } from "@/app/types/article-type";
 import Image from "next/image";
@@ -14,13 +14,13 @@ import Image from "next/image";
 //   })
 // }
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 export default async function ArticlesByCategoryPage(p: {
   params: { category: ArticleCategory; articles: Article[] };
 }) {
   const articles = await ArticleApi.fetchByCategory(p.params.category);
-// const articles = undefined
+  // const articles = undefined
 
   return (
     <div>

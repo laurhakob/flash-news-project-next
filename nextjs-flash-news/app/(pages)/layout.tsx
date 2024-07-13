@@ -1,16 +1,10 @@
-import "./globals.css";
 import { Nav } from "@/app/components/Nav/Nav";
-import { Inter } from "next/font/google";
-import { Metadata } from "next";
+import Clock from "../components/Clock/Clock";
 
-
-const inter = Inter({ subsets: ["latin"],
- });
-
- export const metadata: Metadata = {
-  title: "Nextjs flash news",
-  description: "Get the latest flash news"
- }
+import dynamic from "next/dynamic";
+const ClockNoSSR = dynamic(() => import("@/app/components/Clock/Clock"), {
+  ssr: false,
+});
 
 export default function RootLayout({
   children,
@@ -18,12 +12,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={` ${inter.className} flex p-8`}>
+    <div className="p-8">
+      <div className="h-12 "><ClockNoSSR /></div>
+      <div className="flex">
         <Nav />
-
-        <div className="px-8 mt-16">{children}</div>
-      </body>
-    </html>
+        <div className="mt-16 pl-8 w-full">{children}</div>
+      </div>
+    </div>
   );
 }
